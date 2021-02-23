@@ -14,13 +14,15 @@
     "sails-hook-grunt": "^4.0.0",
     "sails-hook-orm": "^3.0.1",
     "sails-hook-sockets": "^2.0.0",
-    "sails-mongo": "^1.2.0"
+    "sails-mongo": "^1.2.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "5.16.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
+    "start": "NODE_ENV=local node app.js",
+    "start:pro": "NODE_ENV=production node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint:fix": "./node_modules/eslint/bin/eslint.js . --fix",
     "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",

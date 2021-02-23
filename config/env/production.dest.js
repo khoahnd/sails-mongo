@@ -1,7 +1,7 @@
 const config = {
   ENV_NAME: 'local',
 
-  DB_URL: 'mongodb://hndkhoa:thiensu123@cluster0-shard-00-00.nw1yb.gcp.mongodb.net:27017,cluster0-shard-00-01.nw1yb.gcp.mongodb.net:27017,cluster0-shard-00-02.nw1yb.gcp.mongodb.net:27017/sails-mongo?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority',
+  DB_URL: 'mongodb://root@localhost/sails-mongo',
 
   ALLOW_URLS: ['http://localhost:1337'],
 
@@ -22,7 +22,7 @@ module.exports = {
     default: {
       adapter: 'sails-mongo',
       url: config.DB_URL,
-    }
+    },
   },
 
   models: {
