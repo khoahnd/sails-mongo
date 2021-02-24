@@ -37,13 +37,6 @@ module.exports = {
       maxLength: 35,
       required: true,
     },
-    gender: {
-      type: 'string',
-      isIn: ['other', 'male', 'female'],
-    },
-    dob: {
-      type: 'string',
-    },
     email: {
       type: 'string',
       required: true,
@@ -55,5 +48,12 @@ module.exports = {
     isAdmin: {
       type: 'boolean'
     },
+    isDelete: {
+      type: 'boolean'
+    },
+  },
+
+  customToJSON() {
+    return _.omit(this, ['password', 'isDelete']);
   },
 };

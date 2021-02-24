@@ -9,14 +9,8 @@
  */
 
 module.exports.custom = {
-
-  /***************************************************************************
-  *                                                                          *
-  * Any other custom config this Sails app should use during development.    *
-  *                                                                          *
-  ***************************************************************************/
-  // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
-  // stripeSecret: 'sk_test_Zzd814nldl91104qor5911gjald',
-  // …
-
+  SALT_WORK_FACTOR: 10,
+  SECRET: 'RCHqbloNoklcixNrVMCk',
+  TOKEN_EXPIRES: 60 * 60,
+  REFRESH_TOKEN_EXPIRES: 60 * 60 * 24 * 365
 };

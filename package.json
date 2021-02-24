@@ -9,7 +9,10 @@
     "@sailshq/connect-redis": "^3.2.1",
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
+    "bcrypt": "^5.0.0",
     "grunt": "1.0.4",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
     "sails": "^1.4.0",
     "sails-hook-grunt": "^4.0.0",
     "sails-hook-orm": "^3.0.1",
@@ -25,6 +28,8 @@
     "start:pro": "NODE_ENV=production node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint:fix": "./node_modules/eslint/bin/eslint.js . --fix",
+    "lint:window:fix": "node ./node_modules/eslint/bin/eslint.js . --fix",
+    "lint:window": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
   }
