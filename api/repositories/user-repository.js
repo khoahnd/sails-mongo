@@ -5,7 +5,7 @@ class UserRepository extends BaseRepository {
     super(model);
   }
 
-  async destroyUserById(criteria) {
+  async deleteUserById(criteria) {
     return this.updateOne(criteria, { isDelete: true });
   }
 }

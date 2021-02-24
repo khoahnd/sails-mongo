@@ -1,3 +1,7 @@
+const InternalServer = (res, error) => {
+  return res.status(500).send(error);
+};
+
 const NotFound = (res, error) => {
   return res.status(404).send(error);
 };
@@ -27,6 +31,7 @@ const NoContent = (res) => {
 };
 
 module.exports = {
+  InternalServer,
   NotFound,
   BadRequest,
   Unauthorized,

@@ -10,7 +10,14 @@ class BaseRepository {
   }
 
   async find(criteria) {
-    return this.model.find(criteria);
+    let {page, limit, where, sort} = criteria;
+    const skip = (Math.max(1, page) - 1) * Math.max(limit, 0);
+    const totalItems = await this.count(where);
+    sort = sort || [];
+    sort.push({ createdAt: 'desc' });
+    const respone = await this.model.find({ where, sort, limit, skip });
+    const totalPages = Math.ceil(totalItems / limit);
+    return { respone, optional: {page, limit, totalItems, totalPages} };
   }
 
   async create(object) {
