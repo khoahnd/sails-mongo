@@ -11,26 +11,29 @@ class AuthService extends UserRepository {
   async signUp(req, res) {
     const data = req.body;
     try {
+      // Verify the data before creating a new user
       const { error } = authSchema.validateSignUp(data);
       if (error) {
         return BadRequest(res, error);
       }
+      // We will lower case email before creating new users
       data.email = data.email.toLowerCase();
-
+      // We will check duplicate email
       const existingUser = await this.findOne({
         email: data.email,
         isDelete: false
       });
-
       if (existingUser) {
         return BadRequest(res, { message: errors.user.ERR_USER_ALREADY_EXISTED });
       }
-
+      // We will remove the spaces at both ends of the password
       data.password = (data.password || '').trim();
       data.password = await sails.helpers.password.hashGenerator.with({
         password: data.password,
       });
+      // Create new user
       const respone = await this.create(data);
+      // Generate Access token and Refresh token
       const accessToken = await sails.helpers.jwt.tokenGenerator.with({
         payload: {
           userId: respone.id,
@@ -48,11 +51,14 @@ class AuthService extends UserRepository {
   async signIn(req, res) {
     const data = req.body;
     try {
+      // Verify the data
       const { error } = authSchema.validateSignIn(data);
       if (error) {
         return BadRequest(res, error);
       }
+      // We will remove the spaces at both ends of the password
       data.password = (data.password || '').trim();
+      // Check for user existence by email
       const existingUser = await this.findOne({
         email: (data.email || '').toLowerCase(),
         isDelete: false
@@ -60,6 +66,7 @@ class AuthService extends UserRepository {
       if (!existingUser || _.isEmpty(existingUser)) {
         return BadRequest(res, { message: errors.auth.EMAIL_OR_PASSWORD_INVALID });
       }
+      // Generate Access token and Refresh token
       const accessToken = await sails.helpers.jwt.tokenGenerator.with({
         payload: {
           userId: existingUser.id,
